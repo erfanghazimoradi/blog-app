@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/navigation.css">
+    
+    <link rel="stylesheet" href="/stylesheets/article.css">
+    
+    <title>Articles Page</title>
+</head>
+<body>
+
+    <div class="container">
+        <%- include('../partial/navigation.ejs') %> 
+
+        <% for( let index = 0; index < articles.length; index++ ) { %>
+            <% if (index % 2 !== 0) { %>
+                <ul class="even">
+                    <img src="/images/articles/<%= articles[index].blogger %>/<%= articles[index].picture %>" alt="">
+                    <li><b>Title: </b><%= articles[index].title %> </li>
+                    <li><b>Description: </b><%= articles[index].description %> </li>
+                    <li><b>Author: </b><%= articles[index].blogger %> </li>
+                    <li><b>Created at: </b><%= articles[index].createdAt %> </li>
+
+                    <a href="explore/<%= articles[index].blogger %>/<%= articles[index].title %>" class="link-btn primary-color">More Detail</a>
+                </ul>
+            <% } else { %>
+                <ul>
+                    <img src="/images/articles/<%= articles[index].blogger %>/<%= articles[index].picture %>" alt="">
+                    <li><b>Title: </b><%= articles[index].title %> </li>
+                    <li><b>Description: </b><%= articles[index].description %> </li>
+                    <li><b>Author: </b><%= articles[index].blogger %> </li>
+                    <li><b>Created at: </b><%= articles[index].createdAt %> </li>
+
+                    <a href="explore/<%= articles[index].blogger %>/<%= articles[index].title %>" class="primary-color link-btn">More Detail</a>
+                </ul>
+                <% } %>
+        <% } %>
+    </div>
+</body>
+</html>

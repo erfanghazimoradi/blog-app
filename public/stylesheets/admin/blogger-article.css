@@ -1,0 +1,47 @@
+.articles {
+    background-color: #ccc;
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+    width: 49%;
+    float: left;
+    margin-right:0.5rem;
+}
+
+.articles img {
+    height: 130px;
+    border-radius: 1rem;
+}
+.articles li {
+    margin-bottom: 0.5rem;
+}
+
+.articles li b {
+    text-transform: capitalize;
+}
+
+.articles button {
+    display: inline;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    background-color: #b40000;
+    color: #f9f9f9;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+
+.result-alert {
+    background-color: #b40000;
+    color: #fdfdfd;
+    border-radius: 0.5rem;
+    padding: 12px 0;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+    transition: 0.5s;
+    text-align: center;
+    opacity: 0;
+}

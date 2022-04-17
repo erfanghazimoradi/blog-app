@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= blogger.username %> Article Page</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/navigation.css">
+    
+    
+    <link rel="stylesheet" href="/stylesheets/modal.css">
+    <link rel="stylesheet" href="/stylesheets/article.css">
+</head>
+<body>
+
+    <!-- create article modal -->
+    <div id="modal-container">
+        <div class="modal-background">
+            <div class="modal">
+                <!-- alert -->
+                <button class="close-btn">&#10005;</button>
+
+                <!-- create article -->
+                <%- include('../partial/create-article.ejs') %>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <%- include('../partial/navigation.ejs') %> 
+    
+            <button id="two" class="button primary-btn">Create new Article</button>
+
+            <div class="articles-container">
+
+                <% for( let index = 0; index < articles.length; index++ ) { %>
+                    <% if (index % 2 !== 0) { %>
+                        <ul class="even">
+                            <img src="/images/articles/<%= articles[index].blogger %>/<%= articles[index].picture %>" alt="">
+                            <li><b>Title: </b><%= articles[index].title %> </li>
+                            <li><b>Description: </b><%= articles[index].description %> </li>
+                            <li><b>Author: </b><%= articles[index].blogger %> </li>
+                            <li><b>Created at: </b><%= articles[index].createdAt %> </li>
+        
+                            <a href="article/<%= articles[index].title %>" class="link-btn primary-color">More Detail</a>
+                        </ul>
+                    <% } else { %>
+                        <ul>
+                            <img src="/images/articles/<%= articles[index].blogger %>/<%= articles[index].picture %>" alt="">
+                            <li><b>Title: </b><%= articles[index].title %> </li>
+                            <li><b>Description: </b><%= articles[index].description %> </li>
+                            <li><b>Author: </b><%= articles[index].blogger %> </li>
+                            <li><b>Created at: </b><%= articles[index].createdAt %> </li>
+        
+                            <a href="article/<%= articles[index].title %>" class="primary-color link-btn">More Detail</a>
+                        </ul>
+                        <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    <script src="/javascripts/modal.js"></script>
+    <script src="/javascripts/create-article.js"></script>
+    <script src="/javascripts/display-alert.js"></script>
+</body>
+</html>

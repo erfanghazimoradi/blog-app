@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= article.title %> Page</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/navigation.css" />
+
+    <link rel="stylesheet" href="/stylesheets/article-detail.css" />
+    <link rel="stylesheet" href="/stylesheets/modal.css" />
+  </head>
+  <body>
+    <!-- create article modal -->
+    <div id="modal-container">
+      <div class="modal-background">
+        <div class="modal">
+          <!-- alert -->
+          <button class="close-btn">&#10005;</button>
+
+          <!-- create article -->
+          <%- include('../partial/update-article.ejs') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="container">
+        <%- include('../partial/navigation.ejs') %>
+
+        <!-- detail -->
+        <ul class="detail">
+          <!-- for comments -->
+          <input type="text" id="articleID" value="<%= article._id %>" disabled />
+          <% if (blogger) { %>
+          <input type="text" id="bloggerAvatar" value="<%= blogger.avatar %>" disabled />
+          <% } %>
+
+          <div class="article-top">
+            <div class="article-picture">
+              <img
+                src="/images/articles/<%= article.blogger %>/<%= article.picture %>"
+                alt="article-picture"
+              />
+            </div>
+
+            <div class="article-header">
+              <span id="articleTitle"><%= article.title %></span> written by
+              <span id="articleAuthor"><%= article.blogger %></span>
+              <li><b>Description: </b> <%= article.description %></li>
+            </div>
+          </div>
+
+          <textarea class="article-content" readonly><%= article.content %></textarea>
+
+          <div class="button-part">
+            <% if (blogger && blogger.username === article.blogger) { %>
+            <button id="two" class="button primary-btn mg-r-10">Edit Article</button>
+
+            <button class="button primary-btn red-btn" id="removeArticle">
+              remove article
+            </button>
+            <% } else if (blogger && blogger.username === 'admin') { %>
+            <form action="<%= article.blogger %>/<%= article.title %>" id="articleRemove">
+              <button class="button primary-btn red-btn" type="submit">
+                remove article
+              </button>
+            </form>
+            <% } %>
+          </div>
+
+          <div class="picture-part">
+            <% if (blogger && blogger.username === article.blogger) { %>
+            <div class="article-picture">
+              <form action="/" enctype="multipart/form-data" id="pictureForm">
+                <input type="file" name="picture" id="picture" />
+
+                <button type="submit" class="button primary-btn">change picture</button>
+              </form>
+
+              <p class="file-error">choosen avatar size must be less than 1MB.</p>
+            </div>
+            <% } %>
+          </div>
+        </ul>
+
+        <!-- comment -->
+        <%- include('../partial/comment.ejs') %>
+      </div>
+    </div>
+
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    <script src="/javascripts/modal.js"></script>
+    <script src="/javascripts/picture.js"></script>
+    <script src="/javascripts/display-alert.js"></script>
+    <script src="/javascripts/update-article.js"></script>
+    <script src="/javascripts/blogger-articles.js"></script>
+    <script src="/javascripts/comment.js"></script>
+  </body>
+</html>

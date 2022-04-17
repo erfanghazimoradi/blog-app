@@ -1,0 +1,42 @@
+<div class="comment">
+    <h3>Comment Section: </h3>
+
+    <p class="comment-result">comment send</p>
+
+    <div>
+        <% comments.forEach(comment => { %>
+            <div class="comment-wrap">
+                <p>
+                    <% if (comment.bloggerAvatar !== 'default-avatar.png') { %>
+                        <img src="/images/avatars/bloggers/<%= comment.bloggerAvatar %>" alt="blogger-avatar" height="30px" width="30px">
+                    <% } else { %>
+                        <img src="/images/avatars/default-avatar.png" alt="blogger-avatar" height="30px" width="30px">
+                    <% } %>
+                    <%= comment.blogger %>
+                </p>
+
+                <p class="comment-content"><%= comment.content %></p>
+                <pre>at: <%= comment.createdAt %></pre>
+
+                <% if (blogger && comment.blogger === blogger.username) { %>
+                    <form action="/account/comment/<%= comment.id %>" class="removeComment">
+                        <button type="submit">remove comment</button>
+                    </form>
+                <% } else if (blogger && blogger.username === 'admin') { %>
+                    <form action="/account/comment/<%= comment.id %>" class="removeComment">
+                        <button type="submit">remove comment</button>
+                    </form>
+                <% } %>
+            </div>
+            <br>
+        <% }) %>
+    </div>
+
+    <div>
+        <form action="/account/comment" method="POST" id="createComment">
+            <textarea name="content" id="commentContent" rows="5" placeholder="write your opinion respecfully :)"></textarea>
+
+            <button type="submit">send</button>
+        </form>
+    </div>
+</div>

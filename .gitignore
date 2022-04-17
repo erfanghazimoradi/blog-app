@@ -1,0 +1,6 @@
+/node_modules
+
+/public/images/articles/
+/public/images/avatars/bloggers
+
+.DS_Store

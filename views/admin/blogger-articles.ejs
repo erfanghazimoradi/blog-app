@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/navigation.css">
+    <link rel="stylesheet" href="/stylesheets/admin/blogger-article.css">
+    
+    <title>articles page</title>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partial/navigation.ejs') %>
+
+        <p class="result-alert">deleted successfully</p>
+        
+        <% articles.forEach(article => { %>
+            <ul class="articles">
+                <img src="/images/articles/<%= article.blogger %>/<%= article.picture %>" alt="">
+                <li><b>title: </b><%= article.title %> </li>
+                <li><b>description: </b><%= article.description %> </li>
+                <li><b>author: </b><%= article.blogger %> </li>
+                <li><b>created at: </b><%= article.createdAt %> </li>
+    
+                <a href="/explore/<%= article.blogger %>/<%= article.title %>">more detail</a>
+
+                <form action="/<%= article.blogger %>/<%= article.title %>" class="removeArticle">
+                    <button type="submit">remove article</button>
+                </form>
+            </ul>
+        <% }) %>
+    </div>
+
+
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    <script src="/javascripts/blogger-articles.js"></script>
+</body>
+</html>
